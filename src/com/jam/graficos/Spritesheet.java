@@ -9,7 +9,10 @@ public class Spritesheet {
 	
 	private BufferedImage spritesheet;
 	
+	
+	
 	public Spritesheet(String path) {
+		// TODO Auto-generated constructor stub
 		try {
 			spritesheet = ImageIO.read(getClass().getResource(path));
 		} catch (IOException e) {
@@ -17,10 +20,9 @@ public class Spritesheet {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public BufferedImage getSprite(int x, int y, int width, int height) {
 		return spritesheet.getSubimage(x, y, width, height);
 	}
 
 }
-

@@ -1,12 +1,12 @@
- package com.jam.world;
+package com.jam.world;
 
 import java.awt.image.BufferedImage;
 
-public class FloorTile extends Tiles {
+public class FloorTile extends Tile{
 
-	public FloorTile(BufferedImage sprite, int x, int y) {
-		super(y, x, sprite);
-		// TODO Auto-generated constructor stub
+	public FloorTile(int x, int y, BufferedImage sprite) {
+		super(x, y, sprite);
+	
 	}
 
 }

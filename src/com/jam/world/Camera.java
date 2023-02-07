@@ -1,6 +1,7 @@
 package com.jam.world;
 
 public class Camera {
+	
 	public static int x = 0;
 	public static int y = 0;
 	
@@ -11,7 +12,8 @@ public class Camera {
 		if(Atual > Max) {
 			Atual = Max;
 		}
-		return Atual;
 		
+		return Atual;
 	}
+
 }

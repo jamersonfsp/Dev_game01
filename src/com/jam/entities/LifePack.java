@@ -2,9 +2,9 @@ package com.jam.entities;
 
 import java.awt.image.BufferedImage;
 
-public class LifePack extends Entity{
+public class Lifepack extends Entity {
 
-	public LifePack(int x, int y, int width, int height, BufferedImage sprite) {
+	public Lifepack(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 		// TODO Auto-generated constructor stub
 	}
