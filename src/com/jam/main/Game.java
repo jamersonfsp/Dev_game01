@@ -59,9 +59,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	private boolean restartGame = false;
 	
 	public Menu menu;
+	
+	public boolean saveGame = false;
 
 
 	public Game() {
+		Sound.musicBackground.play();
 		rand = new Random();
 		addKeyListener(this);
 		this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -116,6 +119,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public void tick() {
 		if(gameState == "NORMAL") {
+			if(this.saveGame) {
+				this.saveGame = false;
+				String[] opt1 = {"level"};
+				int[] opt2 = {this.CUR_LEVEL};
+				Menu.saveGame(opt1, opt2, 10);
+				
+			}
 			this.restartGame = false;
 			for (int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
@@ -265,6 +275,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_X) {
 			player.shoot = true;
+			
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			this.restartGame = true;
@@ -275,7 +286,14 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			gameState = "MENU";
-			menu.pause = true;
+			Menu.pause = true;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if(gameState == "NORMAL") {
+				this.saveGame = true;	
+			}
+			
 		}
 	}
 

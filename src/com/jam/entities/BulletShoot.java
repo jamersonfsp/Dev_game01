@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.jam.main.Game;
+import com.jam.main.Sound;
 import com.jam.world.Camera;
 
 public class BulletShoot extends Entity{
@@ -24,6 +25,7 @@ public class BulletShoot extends Entity{
 
 	
 	public void tick() {
+		
 		x+=dx*spd;
 		y+=dy*spd;
 		curLife++;

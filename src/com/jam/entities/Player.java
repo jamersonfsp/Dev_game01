@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 //import com.jam.graficos.Spritesheet;
 import com.jam.main.Game;
+import com.jam.main.Sound;
 import com.jam.world.Camera;
 import com.jam.world.World;
 
@@ -107,6 +108,7 @@ public class Player extends Entity {
 		if (shoot) {
 			shoot = false;
 			if(arma && ammo > 0){
+			Sound.shootEffect.play();
 			ammo--;
 			// Criar bala e atirar
 			
@@ -148,6 +150,7 @@ public class Player extends Entity {
 			shoot = false;
 			if(arma && ammo > 0){
 			ammo--;
+			
 			// Criar bala e atirar
 			
 			int dx = 0;
