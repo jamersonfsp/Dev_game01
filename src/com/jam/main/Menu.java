@@ -23,18 +23,18 @@ public class Menu {
 
 	public boolean up, down, enter;
 	public static boolean pause = false;
-	
+
 	public static boolean saveExists = false;
 	public static boolean saveGame = false;
 
 	public void tick() {
 		File file = new File("save.txt");
-		if(file.exists()) {
+		if (file.exists()) {
 			saveExists = true;
-		}else {
+		} else {
 			saveExists = false;
 		}
-		
+
 		if (up) {
 			currentOption--;
 			if (currentOption < 0) {
@@ -53,10 +53,12 @@ public class Menu {
 			if (options[currentOption] == "novo" || options[currentOption] == "continuar") {
 				Game.gameState = "NORMAL";
 				pause = false;
+				file = new File("save.txt");
+				file.delete();
 			} else if (options[currentOption] == "carregar") {
 				file = new File("save.txt");
-				if(file.exists()) {
-					String saver  = loadGame(10);
+				if (file.exists()) {
+					String saver = loadGame(10);
 					applySave(saver);
 				}
 
@@ -66,20 +68,22 @@ public class Menu {
 
 		}
 	}
-	
+
 	public static void applySave(String str) {
 		String[] spl = str.split("/");
-		for(int i = 0; i < spl.length; i++) {
+		for (int i = 0; i < spl.length; i++) {
 			String[] spl2 = spl[i].split(":");
-			switch(spl2[0])
-			{
+			switch (spl2[0]) {
 			case "level":
-				World.restartGame("level"+spl2[1]+".png");
-				Game.gameState = "NORMAL";
+				String t = "level" + spl2[1] + ".png";
+				World.restartGame(t);
 				pause = false;
 				break;
+			case "vida":
+				Game.player.life = Integer.parseInt(spl2[1]);
+				break;
 			}
-			
+
 		}
 	}
 
@@ -97,12 +101,12 @@ public class Menu {
 						trans[1] = "";
 						for (int i = 0; i < val.length; i++) {
 							val[i] -= encode;
-							trans[1]+=i;
+							trans[1] += val[i];
 						}
-						line+=trans[0];
-						line+=":";
-						line+=trans[1];
-						line+="/";
+						line += trans[0];
+						line += ":";
+						line += trans[1];
+						line += "/";
 					}
 				} catch (IOException e) {
 				}
@@ -118,7 +122,7 @@ public class Menu {
 		try {
 			write = new BufferedWriter(new FileWriter("save.txt"));
 		} catch (IOException e) {
-
+			e.printStackTrace();
 		}
 
 		for (int i = 0; i < val1.length; i++) {
